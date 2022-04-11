@@ -6,6 +6,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class HelloWindow {
     JFrame frame = new JFrame("SportsApp");
@@ -64,9 +65,7 @@ public class HelloWindow {
         entryButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                saveData();
-                frame.dispose();
-                new MainMenuWindow((String) selectionListProfile.getSelectedItem());
+                enterToApp();
             }
         });
 
@@ -83,11 +82,24 @@ public class HelloWindow {
         });
     }
 
+    void enterToApp(){
+        if (selectionListProfile.getSelectedItem() == null){
+            JOptionPane.showMessageDialog(frame, "Выберите пользователя");
+            return;
+        }
+        saveData();
+        frame.dispose();
+        new MainMenuWindow((String) selectionListProfile.getSelectedItem());
+    }
+
     void createProfile(){
         String name = JOptionPane.showInputDialog("Введите имя: ", "");
 
         if (profiles.contains(name)){
             JOptionPane.showMessageDialog(frame, "Профиль уже существует");
+        }
+        else if(Objects.equals(name, "")){
+            JOptionPane.showMessageDialog(frame, "Пустое имя");
         }
         else{
             selectionListProfile.addItem(name);
