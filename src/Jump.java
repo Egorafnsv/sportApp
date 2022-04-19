@@ -1,6 +1,6 @@
 public class Jump extends TypeSport{
     Jump(){
         name = "Скакалка";
-        kkal = 1;
+        kcal = 1;
     }
 }

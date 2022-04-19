@@ -1,9 +1,9 @@
 public class TypeSport {
     String name = "Sport";
-    double kkal = 1;
+    double kcal = 1;
 
     public double getKkalOnSec() {
-        return kkal;
+        return kcal;
     }
 
     public String getNameExercise() {

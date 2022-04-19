@@ -1,6 +1,6 @@
 public class PushUp extends TypeSport{
     PushUp(){
         name = "Отжимания";
-        kkal = 0.1;
+        kcal = 0.1;
     }
 }
