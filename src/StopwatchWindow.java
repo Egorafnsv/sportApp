@@ -2,7 +2,6 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
-import java.util.Scanner;
 import javax.swing.*;
 import javax.sound.sampled.*;
 
@@ -153,7 +152,15 @@ public class StopwatchWindow implements ActionListener{
                 try (AudioInputStream audioStream = AudioSystem.getAudioInputStream(sound)){
                     Clip clip = AudioSystem.getClip();
                     clip.open(audioStream);
+                    FloatControl control =
+                            (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+                    control.setValue(2f * (float) Math.log10((float) Math.pow(10f, control.getValue() / 20f)));
+                    float range = control.getMaximum() - control.getMinimum();
+                    float gain = (range * 0.65f) + control.getMinimum();
+                    control.setValue(gain);
+
                     clip.start();
+
                 }
                 catch (UnsupportedAudioFileException | IOException | LineUnavailableException e){
                     e.printStackTrace();
@@ -162,7 +169,8 @@ public class StopwatchWindow implements ActionListener{
             double resKcal = exercise.getKkalOnSec()*elapsedTime/1000;
             stats.putNewExercise(exercise.getNameExercise(), resKcal, timeLabel.getText());
             JOptionPane.showMessageDialog(frame, "Упражнение " + exercise.getNameExercise() + " завершено\n" +
-                    "Калорий сожжено: " + resKcal + "\n" + "Общее время тренировки: " + hours_string + ":" + minutes_string + ":" + seconds_string);
+                    "Калорий сожжено: " + resKcal + "\n" + "Общее время тренировки: " + hours_string + ":" + minutes_string + ":" + seconds_string,
+                    "Результат тренировки", JOptionPane.INFORMATION_MESSAGE);
         }
 
         main_frame.setVisible(true);

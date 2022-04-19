@@ -2,12 +2,12 @@ import java.io.Serializable;
 
 public class ResultTraining implements Serializable {
     private final String type;
-    private final double kkal;
+    private final double kcal;
     private final String time;
 
-    ResultTraining(String type, double kkal, String time){
+    ResultTraining(String type, double kcal, String time){
         this.type = type;
-        this.kkal = kkal;
+        this.kcal = kcal;
         this.time = time;
     }
 
@@ -16,7 +16,7 @@ public class ResultTraining implements Serializable {
     }
 
     public double getKkal() {
-        return kkal;
+        return kcal;
     }
 
     public String getTime() {

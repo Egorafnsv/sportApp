@@ -96,7 +96,7 @@ public class HelloWindow {
         String name = JOptionPane.showInputDialog("Введите имя: ", "");
 
         if (profiles.contains(name)){
-            JOptionPane.showMessageDialog(frame, "Профиль уже существует");
+            JOptionPane.showMessageDialog(frame, "Профиль уже существует", "Ошибка", JOptionPane.ERROR_MESSAGE);
         }
         else if(Objects.equals(name, "")){
             JOptionPane.showMessageDialog(frame, "Пустое имя");

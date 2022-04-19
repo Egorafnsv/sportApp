@@ -2,8 +2,6 @@ import org.junit.jupiter.api.Test;
 
 import javax.swing.*;
 
-import java.awt.event.ActionEvent;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class StopwatchWindowTest {
@@ -32,7 +30,6 @@ class StopwatchWindowTest {
         for (int i = 0; i <= 6; i++){
             test.startButton.doClick();
             result += test.startButton.getText();
-
         }
 
         assertEquals(expectedString, result);

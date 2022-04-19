@@ -98,7 +98,7 @@ public class MainMenuWindow {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(frame, String.format("Суммарное количество калорий: %.2f", statistics.getSumCal()) +
-                        "\n\n-- 5 последних упражнений --\n\n" + statistics.completedExercises());
+                        "\n\n-- 5 последних упражнений --\n\n" + statistics.completedExercises(), "Общая статистика", JOptionPane.INFORMATION_MESSAGE);
             }
         });
 
@@ -122,7 +122,6 @@ public class MainMenuWindow {
             ObjectOutputStream objOut = new ObjectOutputStream(file)) {
             objOut.writeObject(statistics);
             objOut.flush();
-//            System.out.println("Сохранено!");
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -132,7 +131,6 @@ public class MainMenuWindow {
     private void loadData() {
         try (ObjectInputStream objIn = new ObjectInputStream(new FileInputStream("./data/" + profile + ".txt"))) {
             statistics = (Statistics) objIn.readObject();
-//            System.out.println("Загружено!");
 
 
         } catch (FileNotFoundException e) {
